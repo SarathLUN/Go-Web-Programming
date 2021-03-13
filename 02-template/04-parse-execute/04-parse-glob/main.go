@@ -8,16 +8,11 @@ import (
 
 func main() {
 
-	tpl, err := template.ParseFiles("one.gohtml")
+	tpl, err := template.ParseGlob("templates/*")
 	if err != nil {
 		log.Fatalln(err)
 	}
 	err = tpl.Execute(os.Stdout, nil)
-	if err != nil {
-		log.Fatalln(err)
-	}
-
-	tpl, err = tpl.ParseFiles("two.gohtml", "vespa.gohtml") //add more files to tpl
 	if err != nil {
 		log.Fatalln(err)
 	}
@@ -26,19 +21,13 @@ func main() {
 	if err != nil {
 		log.Fatalln(err)
 	}
-
+	err = tpl.ExecuteTemplate(os.Stdout, "one.gohtml", nil)
+	if err != nil {
+		log.Fatalln(err)
+	}
 	err = tpl.ExecuteTemplate(os.Stdout, "two.gohtml", nil)
 	if err != nil {
 		log.Fatalln(err)
 	}
 
-	err = tpl.ExecuteTemplate(os.Stdout, "one.gohtml", nil)
-	if err != nil {
-		log.Fatalln(err)
-	}
-
-	err = tpl.Execute(os.Stdout, nil)
-	if err != nil {
-		log.Fatalln(err)
-	}
 }
