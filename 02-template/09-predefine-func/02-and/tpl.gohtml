@@ -1,0 +1,25 @@
+EXAMPLE #1:
+{{ range .}}
+    {{.}}
+{{end}}
+
+EXAMPLE #2:
+{{if .}}
+    {{.}}
+{{end}}
+
+EXAMPLE #3:
+{{range .}}
+    {{if .Name}}
+        {{.Name}}
+    {{end}}
+{{end}}
+
+EXAMPLE #4:
+{{range .}}
+    {{if and .Name .Admin}}
+        EXAMPLE #4 - Name: {{.Name}}
+        EXAMPLE #4 - Motto: {{.Motto}}
+        EXAMPLE #4 - Admin: {{.Admin}}
+    {{end}}
+{{end}}
