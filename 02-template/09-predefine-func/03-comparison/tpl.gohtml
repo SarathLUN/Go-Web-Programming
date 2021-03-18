@@ -1,0 +1,15 @@
+{{if gt .Score1 .Score2 }}
+    SCORE1 > SCORE2
+{{end}}
+
+{{if lt .Score1 .Score2}}
+    SCORE1 < SCORE2
+{{end}}
+
+{{if eq .Score1 .Score2}}
+    SCORE1 = SCORE2
+{{end}}
+
+{{if lt .Score1 10}}
+    LAST ONE: SCORE1 < 10
+{{end}}
