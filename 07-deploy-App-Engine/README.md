@@ -34,5 +34,4 @@ gcloud app deploy app.yaml --project temp-137512 -v 1
     - example: http://temp-145415.appspot.com/
 
 
-change DNS info at google domains
-point your domain to your App Engine project.
+change DNS info at google domains point your domain to your App Engine project.
