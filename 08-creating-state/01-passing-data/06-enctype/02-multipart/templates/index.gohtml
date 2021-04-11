@@ -1,5 +1,5 @@
 {{template "header"}}
-<form method="post" enctype="application/x-www-form-urlencoded">
+<form method="post" enctype="multipart/form-data">
     <label for="firstName">First Name</label>
     <input type="text" name="firstName" id="firstName">
     <br>
@@ -9,10 +9,16 @@
     <label for="subscribed">Subscribed</label>
     <input type="checkbox" name="subscribed" id="subscribed">
     <br>
+    <input type="file" name="uploadFile">
+    <br>
     <input type="submit">
 </form>
 <br>
 {{if .}}
-    <h1>BODY: {{.}}</h1>
+    <p>
+        BODY:
+        <br>
+        {{.}}
+    </p>
 {{end}}
 {{template "footer"}}
