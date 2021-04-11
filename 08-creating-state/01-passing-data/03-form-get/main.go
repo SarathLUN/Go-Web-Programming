@@ -20,6 +20,11 @@ func foo(w http.ResponseWriter, r *http.Request) {
 <input type="text" name="q" />
 <input type="submit" />
 </form>
+<h1>Submit form with GET</h1>
+<form method="GET">
+<input type="text" name="q" />
+<input type="submit" />
+</form>
 <br>
 YOUR SUBMIT: `+v)
 }
