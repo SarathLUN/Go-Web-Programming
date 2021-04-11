@@ -21,7 +21,10 @@ type person struct {
 func main() {
 	http.HandleFunc("/", foo)
 	http.Handle("/favicon.ico", http.NotFoundHandler())
-	http.ListenAndServe(":8080", nil)
+	err := http.ListenAndServe(":8080", nil)
+	if err != nil {
+		log.Fatalln(err)
+	}
 }
 
 func foo(w http.ResponseWriter, r *http.Request) {
