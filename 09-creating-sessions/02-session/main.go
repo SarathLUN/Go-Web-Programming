@@ -28,7 +28,10 @@ func main() {
 	http.HandleFunc("/", index)
 	http.HandleFunc("/bar", bar)
 	http.Handle("/favicon.ico", http.NotFoundHandler())
-	http.ListenAndServe(":8080", nil)
+	err := http.ListenAndServe(":8080", nil)
+	if err != nil {
+		log.Fatalln(err)
+	}
 }
 
 func bar(w http.ResponseWriter, r *http.Request) {
@@ -48,8 +51,11 @@ func bar(w http.ResponseWriter, r *http.Request) {
 	}
 	// found the username, then lookup user info
 	u := dbUsers[userName]
-	// execute the template to deplay user info
-	tpl.ExecuteTemplate(w, "bar.gohtml", u)
+	// execute the template to display user info
+	err = tpl.ExecuteTemplate(w, "bar.gohtml", u)
+	if err != nil {
+		log.Fatalln(err)
+	}
 }
 
 func index(w http.ResponseWriter, r *http.Request) {
