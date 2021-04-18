@@ -22,7 +22,7 @@ type user struct {
 }
 
 var dbUsers = map[string]user{}     // userID, user
-var dbSession = map[string]string{} // sessionID, userID
+var dbSession = map[string]string{} // sessionID, userID(FK)
 
 func main() {
 	http.HandleFunc("/", index)
