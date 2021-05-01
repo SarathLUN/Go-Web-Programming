@@ -1,0 +1,108 @@
+# Handon exercise solution
+- build binary file
+GOOS=linux GOARCH=amd64 go build -o myGoWeb2
+
+- upload binary file & templates to AWS
+=> developer's machine:
+scp -i ~/.ssh/aws/kp-2021-04-25.pem -rvp templates myGoWeb2 ec2-user@ec2-13-58-110-23.us-east-2.compute.amazonaws.com:
+=> AWS instance:
+#cd $GOBIN
+#mkdir my-go-web-2
+#cd my-go-web-2
+#mv -fv /home/ec2-user/myGoWeb2 /home/ec2-user/templates .
+#chown root:root *
+
+- run test 1
+#./myGoWeb2
+`
+2021/05/01 20:23:29 ******
+2021/05/01 20:23:29 ======
+2021/05/01 20:24:25 ******
+2021/05/01 20:24:25 ======
+2021/05/01 20:24:49 ******
+2021/05/01 20:24:49 ======
+2021/05/01 20:25:15 ******
+2021/05/01 20:25:15 909cdc55-110a-4f06-a3a4-065eaa8980e3 test@test.com
+2021/05/01 20:25:15 ======
+2021/05/01 20:26:24 ******
+2021/05/01 20:26:24 909cdc55-110a-4f06-a3a4-065eaa8980e3 test@test.com
+2021/05/01 20:26:24 ======
+2021/05/01 20:26:48 ******
+2021/05/01 20:26:48 909cdc55-110a-4f06-a3a4-065eaa8980e3 test@test.com
+2021/05/01 20:26:48 ======
+2021/05/01 20:26:59 ******
+2021/05/01 20:26:59 613ef93a-80e6-4cad-829d-5984a896a0ef test@test.com
+2021/05/01 20:26:59 909cdc55-110a-4f06-a3a4-065eaa8980e3 test@test.com
+2021/05/01 20:26:59 ======
+2021/05/01 20:27:42 ******
+2021/05/01 20:27:42 909cdc55-110a-4f06-a3a4-065eaa8980e3 test@test.com
+2021/05/01 20:27:42 613ef93a-80e6-4cad-829d-5984a896a0ef test@test.com
+2021/05/01 20:27:42 ======
+2021/05/01 20:27:46 ******
+2021/05/01 20:27:46 909cdc55-110a-4f06-a3a4-065eaa8980e3 test@test.com
+2021/05/01 20:27:46 613ef93a-80e6-4cad-829d-5984a896a0ef test@test.com
+2021/05/01 20:27:46 ======
+2021/05/01 20:27:48 ******
+2021/05/01 20:27:48 909cdc55-110a-4f06-a3a4-065eaa8980e3 test@test.com
+2021/05/01 20:27:48 613ef93a-80e6-4cad-829d-5984a896a0ef test@test.com
+2021/05/01 20:27:48 ======
+2021/05/01 20:27:55 ******
+2021/05/01 20:27:55 909cdc55-110a-4f06-a3a4-065eaa8980e3 test@test.com
+2021/05/01 20:27:55 613ef93a-80e6-4cad-829d-5984a896a0ef test@test.com
+2021/05/01 20:27:55 ======
+2021/05/01 20:28:05 ******
+2021/05/01 20:28:05 909cdc55-110a-4f06-a3a4-065eaa8980e3 test@test.com
+2021/05/01 20:28:05 613ef93a-80e6-4cad-829d-5984a896a0ef test@test.com
+2021/05/01 20:28:05 ======
+2021/05/01 20:28:29 ******
+2021/05/01 20:28:29 909cdc55-110a-4f06-a3a4-065eaa8980e3 test@test.com
+2021/05/01 20:28:29 613ef93a-80e6-4cad-829d-5984a896a0ef test@test.com
+2021/05/01 20:28:29 42815f79-f365-4e32-b247-05c3516bf702 007@test.com
+2021/05/01 20:28:29 ======
+2021/05/01 20:28:37 ******
+2021/05/01 20:28:37 909cdc55-110a-4f06-a3a4-065eaa8980e3 test@test.com
+2021/05/01 20:28:37 613ef93a-80e6-4cad-829d-5984a896a0ef test@test.com
+2021/05/01 20:28:37 42815f79-f365-4e32-b247-05c3516bf702 007@test.com
+2021/05/01 20:28:37 ======
+`
+
+- create system service file
+cd /etc/systemd/system
+cp my-go-web.service my-go-web-2.service
+`
+[Unit]
+Description=Go Server 2
+
+[Service]
+ExecStart=/root/go/bin/my-go-web-2/myGoWeb2
+WorkingDirectory=/root/go/bin/my-go-web-2
+User=root
+Group=root
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+`
+
+- start system service
+systemctl start my-go-web-2.service
+systemctl status my-go-web-2.service
+`
+● my-go-web-2.service - Go Server 2
+   Loaded: loaded (/etc/systemd/system/my-go-web-2.service; disabled; vendor preset: disabled)
+   Active: active (running) since Sat 2021-05-01 20:34:26 UTC; 21s ago
+ Main PID: 3764 (myGoWeb2)
+   CGroup: /system.slice/my-go-web-2.service
+           └─3764 /root/go/bin/my-go-web-2/myGoWeb2
+
+May 01 20:34:26 ip-172-31-34-27.us-east-2.compute.internal systemd[1]: Started Go Server 2.
+May 01 20:34:26 ip-172-31-34-27.us-east-2.compute.internal systemd[1]: Starting Go Server 2...
+`
+
+- enable startup system service
+systemctl enable my-go-web-2.service
+`
+Created symlink from /etc/systemd/system/multi-user.target.wants/my-go-web-2.service to /etc/systemd/system/my-go-web-2.service.
+`
+
+

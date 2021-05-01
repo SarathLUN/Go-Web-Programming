@@ -1,0 +1,149 @@
+# these are the step-by-step after we start Amazon Linux 2 instance:
+
+=> here is on server side:
+
+ssh -i ~/.ssh/aws/kp-2021-04-25.pem ec2-user@ec2-3-18-221-235.us-east-2.compute.amazonaws.com
+
+yum update -y
+
+yum install -y golang
+
+go version
+
+`go version go1.15.8 linux/amd64`
+
+go env
+
+`
+GO111MODULE=""
+GOARCH="amd64"
+GOBIN=""
+GOCACHE="/root/.cache/go-build"
+GOENV="/root/.config/go/env"
+GOEXE=""
+GOFLAGS=""
+GOHOSTARCH="amd64"
+GOHOSTOS="linux"
+GOINSECURE=""
+GOMODCACHE="/root/go/pkg/mod"
+GONOPROXY=""
+GONOSUMDB=""
+GOOS="linux"
+GOPATH="/root/go"
+GOPRIVATE=""
+GOPROXY="https://proxy.golang.org,direct"
+GOROOT="/usr/lib/golang"
+GOSUMDB="sum.golang.org"
+GOTMPDIR=""
+GOTOOLDIR="/usr/lib/golang/pkg/tool/linux_amd64"
+GCCGO="gccgo"
+AR="ar"
+CC="gcc"
+CXX="g++"
+CGO_ENABLED="1"
+GOMOD=""
+CGO_CFLAGS="-g -O2"
+CGO_CPPFLAGS=""
+CGO_CXXFLAGS="-g -O2"
+CGO_FFLAGS="-g -O2"
+CGO_LDFLAGS="-g -O2"
+PKG_CONFIG="pkg-config"
+GOGCCFLAGS="-fPIC -m64 -pthread -fmessage-length=0 -fdebug-prefix-map=/tmp/go-build807080367=/tmp/go-build -gno-record-gcc-switches"
+`
+
+vi .bash_profile
+
+`
+# .bash_profile
+
+# Get the aliases and functions
+if [ -f ~/.bashrc ]; then
+        . ~/.bashrc
+fi
+
+# User specific environment and startup programs
+
+GOPATH=$HOME/go
+GOBIN=$GOPATH/bin
+
+PATH=$PATH:$HOME/bin:$GOBIN
+
+export GOPATH
+export GOBIN
+export PATH
+`
+
+go env
+
+`
+GO111MODULE=""
+GOARCH="amd64"
+GOBIN="/root/go/bin"
+GOCACHE="/root/.cache/go-build"
+GOENV="/root/.config/go/env"
+GOEXE=""
+GOFLAGS=""
+GOHOSTARCH="amd64"
+GOHOSTOS="linux"
+GOINSECURE=""
+GOMODCACHE="/root/go/pkg/mod"
+GONOPROXY=""
+GONOSUMDB=""
+GOOS="linux"
+GOPATH="/root/go"
+GOPRIVATE=""
+GOPROXY="https://proxy.golang.org,direct"
+GOROOT="/usr/lib/golang"
+GOSUMDB="sum.golang.org"
+GOTMPDIR=""
+GOTOOLDIR="/usr/lib/golang/pkg/tool/linux_amd64"
+GCCGO="gccgo"
+AR="ar"
+CC="gcc"
+CXX="g++"
+CGO_ENABLED="1"
+GOMOD=""
+CGO_CFLAGS="-g -O2"
+CGO_CPPFLAGS=""
+CGO_CXXFLAGS="-g -O2"
+CGO_FFLAGS="-g -O2"
+CGO_LDFLAGS="-g -O2"
+PKG_CONFIG="pkg-config"
+GOGCCFLAGS="-fPIC -m64 -pthread -fmessage-length=0 -fdebug-prefix-map=/tmp/go-build251791227=/tmp/go-build -gno-record-gcc-switches"
+`
+
+mkdir ~/go
+cd $GOPATH
+mkdir src bin pkg
+mkdir -p src/github.com/SarathLUN/Go-Web-Programming/031-aws/01-hello
+cd src/github.com/SarathLUN/Go-Web-Programming/031-aws/01-hello
+vi main.go
+`
+package main
+
+import (
+	"io"
+	"net/http"
+)
+
+func main() {
+	http.HandleFunc("/", index)
+	http.ListenAndServe(":80", nil)
+}
+
+func index(w http.ResponseWriter, req *http.Request) {
+	io.WriteString(w, "Oh yeah, I'm running on AWS.")
+}
+
+`
+
+go run main.go
+
+
+=> here is on client side:
+curl http://ec2-3-18-221-235.us-east-2.compute.amazonaws.com
+`
+Oh yeah, I'm running on AWS.
+`
+open http://ec2-3-18-221-235.us-east-2.compute.amazonaws.com
+
