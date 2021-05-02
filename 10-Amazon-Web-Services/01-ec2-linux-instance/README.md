@@ -1,5 +1,5 @@
 # 1. CREATE AWS INSTANCE
-1. Login or signup new account if you not yet have one on AWS Management Console
+1. Login or signup new account if you not yet have one on [AWS Management Console](https://us-east-2.console.aws.amazon.com/console/home?region=us-east-2)
 2. In the management console click on **Services** and go to **EC2**
 3. You will be lead to *EC2 Dashboard* like below screenshot
    ![alt text](screenshots/01.png)
