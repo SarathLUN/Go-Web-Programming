@@ -1,4 +1,5 @@
-#AWS RDS MySQL
+# AWS RDS MySQL
+
 this is just for learning purpose.
 
 1. create RDS instance
