@@ -72,7 +72,7 @@ export GOPATH
 export GOBIN
 export PATH
 `
-
+source .bash_profile
 go env
 
 `
