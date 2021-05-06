@@ -12,7 +12,10 @@ var db *sql.DB
 var err error
 
 func main() {
-	db, err = sql.Open("mysql", "admin:yzTvwnqe6AJ6CYb@tcp(database-1.ch3fcoesrgva.us-east-2.rds.amazonaws.com:3306)/test2?charset=utf8")
+	// for AWS
+	// db, err = sql.Open("mysql", "admin:yzTvwnqe6AJ6CYb@tcp(database-1.ch3fcoesrgva.us-east-2.rds.amazonaws.com:3306)/test2?charset=utf8")
+	// my localhost
+	db, err = sql.Open("mysql", "root:root@tcp(localhost:3306)/test2?charset=utf8")
 	check(err)
 	defer db.Close()
 
@@ -35,4 +38,5 @@ func check(err error) {
 	if err != nil {
 		log.Println(err)
 	}
+	log.Println("no error, mean connected db")
 }
