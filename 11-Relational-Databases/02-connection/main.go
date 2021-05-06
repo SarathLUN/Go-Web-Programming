@@ -17,10 +17,14 @@ func main() {
 	// my localhost
 	db, err = sql.Open("mysql", "root:root@tcp(localhost:3306)/test2")
 	check(err)
-	defer db.Close()
+	log.Println("no db error, mean connected db")
+	defer func(db *sql.DB) {
+		_ = db.Close()
+	}(db)
 
 	err = db.Ping()
 	check(err)
+	log.Println("ping db OK, mean connected db")
 
 	http.HandleFunc("/", index)
 	http.Handle("/favicon.ico", http.NotFoundHandler())
@@ -30,6 +34,7 @@ func main() {
 }
 
 func index(w http.ResponseWriter, r *http.Request) {
+	log.Println(r)
 	_, err = io.WriteString(w, "Successful")
 	check(err)
 }
@@ -38,5 +43,5 @@ func check(err error) {
 	if err != nil {
 		log.Println(err)
 	}
-	log.Println("no error, mean connected db")
+
 }
