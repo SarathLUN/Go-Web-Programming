@@ -15,7 +15,7 @@ func main() {
 	// for AWS
 	// db, err = sql.Open("mysql", "admin:yzTvwnqe6AJ6CYb@tcp(database-1.ch3fcoesrgva.us-east-2.rds.amazonaws.com:3306)/test2?charset=utf8")
 	// my localhost
-	db, err = sql.Open("mysql", "root:root@tcp(localhost:3306)/test2?charset=utf8")
+	db, err = sql.Open("mysql", "root:root@tcp(localhost:3306)/test2")
 	check(err)
 	defer db.Close()
 
@@ -24,13 +24,13 @@ func main() {
 
 	http.HandleFunc("/", index)
 	http.Handle("/favicon.ico", http.NotFoundHandler())
-	err := http.ListenAndServe(":8080", nil)
+	err = http.ListenAndServe(":8080", nil)
 	check(err)
 
 }
 
 func index(w http.ResponseWriter, r *http.Request) {
-	_, err := io.WriteString(w, "Successful")
+	_, err = io.WriteString(w, "Successful")
 	check(err)
 }
 
