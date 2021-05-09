@@ -1,0 +1,1 @@
+the image files will be ignored from git.

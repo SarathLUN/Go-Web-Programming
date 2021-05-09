@@ -121,5 +121,8 @@ fabric.properties
 
 # ignore upload files
 13-photo-blog/04-upload-pictures/uploads/pics/*.png
+13-photo-blog/05-display-pictures/uploads/pics/*.png
 13-photo-blog/04-upload-pictures/uploads/pics/*.jpg
+13-photo-blog/05-display-pictures/uploads/pics/*.jpg
 13-photo-blog/04-upload-pictures/uploads/pics/*.jpeg
+13-photo-blog/05-display-pictures/uploads/pics/*.jpeg
