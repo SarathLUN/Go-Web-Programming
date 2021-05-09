@@ -118,3 +118,8 @@ fabric.properties
 # vendor/
 
 !/08-creating-state/
+
+# ignore upload files
+13-photo-blog/04-upload-pictures/uploads/pics/*.png
+13-photo-blog/04-upload-pictures/uploads/pics/*.jpg
+13-photo-blog/04-upload-pictures/uploads/pics/*.jpeg
