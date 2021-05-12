@@ -126,3 +126,7 @@ fabric.properties
 13-photo-blog/05-display-pictures/uploads/pics/*.jpg
 13-photo-blog/04-upload-pictures/uploads/pics/*.jpeg
 13-photo-blog/05-display-pictures/uploads/pics/*.jpeg
+
+# ignore private key
+*.pem
+
