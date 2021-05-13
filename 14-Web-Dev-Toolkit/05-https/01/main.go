@@ -7,11 +7,13 @@ import (
 
 func main() {
 	http.HandleFunc("/", foo)
-	err := http.ListenAndServeTLS(":10443", "cert.pem", "key.pem", nil)
+	err := http.ListenAndServe(":8080", nil)
 	if err != nil {
 		log.Fatalln(err)
-	} else {
-		log.Println("open https://localhost:10433")
+	}
+	err = http.ListenAndServeTLS(":10443", "./cert.pem", "./key.pem", nil)
+	if err != nil {
+		log.Fatalln(err)
 	}
 
 }
