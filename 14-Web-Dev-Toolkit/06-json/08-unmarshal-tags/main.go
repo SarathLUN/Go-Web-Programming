@@ -26,5 +26,8 @@ func main() {
 		log.Fatalln(err)
 	}
 	log.Println(data)
+	log.Printf("%T", data)
 	log.Println(data[1].Kauai)
+	log.Printf("%T", data[1].Kauai)
+
 }
