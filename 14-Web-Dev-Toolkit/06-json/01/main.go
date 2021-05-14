@@ -34,6 +34,7 @@ func encd(w http.ResponseWriter, req *http.Request) {
 			"Wry sense of humor",
 		},
 	}
+	// encode take go struct and turn into json then immediate write to response
 	err := json.NewEncoder(w).Encode(p1)
 	if err != nil {
 		log.Println(err)
@@ -51,10 +52,14 @@ func mshl(w http.ResponseWriter, req *http.Request) {
 			"Wry sense of humor",
 		},
 	}
+	// Marshal just return json
+	// here we can handle error in step-by-step
+	// we can also use return json in multiple purpose, if needed
 	j, err := json.Marshal(p1)
 	if err != nil {
 		log.Println(err)
 	}
+	// here we write to response
 	_, err = w.Write(j)
 	if err != nil {
 		log.Println(err)
