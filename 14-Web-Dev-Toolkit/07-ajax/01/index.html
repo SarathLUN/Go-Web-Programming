@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AJAX</title>
+    <style>
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        h1 {
+            font-size: 5vw;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Make a request</h1>
+
+<script>
+    function makeRequest() {
+        // create a XMLHttpRequest
+        const xhr = new XMLHttpRequest();
+
+        // open the request
+        xhr.open('GET', 'test.html');
+
+        // handle the response
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                alert(xhr.responseText);
+            }
+        }
+
+        // send the request
+        xhr.send()
+    }
+
+    document.querySelector('h1').onclick = makeRequest;
+</script>
+
+</body>
+</html>
