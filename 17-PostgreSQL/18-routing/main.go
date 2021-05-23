@@ -8,7 +8,7 @@ import (
 	"net/http"
 )
 
-type Books struct {
+type Book struct {
 	isbn   string
 	title  string
 	author string
@@ -50,9 +50,9 @@ func books(w http.ResponseWriter, r *http.Request) {
 	}
 	defer rows.Close()
 
-	bks := make([]Books, 0)
+	bks := make([]Book, 0)
 	for rows.Next() {
-		bk := Books{}
+		bk := Book{}
 		err = rows.Scan(&bk.isbn, &bk.title, &bk.author, &bk.price) // make sure in correct order
 		if err != nil {
 			log.Fatalln(err)
