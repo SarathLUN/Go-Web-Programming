@@ -3,7 +3,7 @@
 add these lines of code:
 
 ## func main()
-```
+```go
   http.HandleFunc("/books/show", booksShow)
 ```
 
@@ -17,6 +17,11 @@ Prepared statements are resilient against SQL injection, because parameter value
 The placeholder parameter syntax differs depending on your database. Postgres uses the $N notation, but MySQL, SQL Server and others use the ? character as a placeholder." - Alex Edwards
 
 # run the application and make a request
+use `\\` to escape special char in ``curl`` like ``?`` & ``=``
+```shell
+curl http://localhost:8080/book/show\?isbn\=978-1503261969
 ```
-curl -i localhost:8080/books/show?isbn=978-1505255607
+output:
+```shell
+{978-1503261969 Emma Jayne Austen 9.44}
 ```
