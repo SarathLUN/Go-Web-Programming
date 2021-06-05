@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Update a Book</title>
+
+    <style>
+        html, body {
+            padding: 0;
+            border: 0;
+            margin: 0;
+        }
+
+        body, form {
+            display: flex;
+            flex-flow: column nowrap;
+            justify-content: center;
+            align-items: center;
+        }
+        input {
+            width: 60vw;
+            font-size: 5rem;
+            color: blue;
+            border: 1px solid black;
+        }
+    </style>
+
+</head>
+<body>
+
+<h1>Update a Book</h1>
+
+<form method="post" action="/book/update/process">
+    <input type="text" name="isbn" placeholder="ISBN" required autofocus value="{{.Isbn}}">
+    <input type="text" name="title" placeholder="Title" required value="{{.Title}}">
+    <input type="text" name="author" placeholder="Author" required value="{{.Author}}">
+    <input type="number" step="0.01" name="price" placeholder="Price" required value="{{.Price}}">
+    <input type="submit">
+</form>
+
+</body>
+</html>
