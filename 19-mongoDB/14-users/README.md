@@ -45,7 +45,10 @@ db.runCommand({connectionStatus : 1})
 Give this user readwrite permissions on the ```store``` db.
 
 ```shell
-use store \
+use store
+```
+
+```shell
 db.createUser( \
   { \
     user: "bond", \
