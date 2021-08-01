@@ -3,7 +3,10 @@
 ## create admin super user
 
 ```shell
-use admin \
+use admin
+```
+
+```shell
 db.createUser( \
   { \
     user: "root", \
