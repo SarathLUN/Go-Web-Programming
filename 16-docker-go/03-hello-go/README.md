@@ -24,7 +24,7 @@ The Dockerfile may start with a comment
 
 The Dockerfile must have FROM as the first instruction
 
-The FROM says what image your are building this image from.
+The FROM says what image you are building this image from.
 
 In most cases, you will start with an image to build your image.
 
