@@ -13,7 +13,7 @@ func main() {
 		log.Fatalln(err)
 	}
 
-	// defer lis.Close() // this will warning of none handle err
+	// defer lis.Close() // this will warn of none handle err,
 	// so we make use of anonymous func to handle err
 	defer func() {
 		err = lis.Close()
@@ -25,7 +25,7 @@ func main() {
 	for {
 		conn, err := lis.Accept()
 		if err != nil {
-			// log.Fatalln(err) // Fatal will terminate the program
+			// log.Fatalln(err) // Fatal will terminate the program,
 			// so we use Println with continue instead
 			log.Println(err)
 			continue
